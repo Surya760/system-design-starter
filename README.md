@@ -13,6 +13,7 @@ Turn a product idea—or an existing codebase—into a system design you can und
 - Produces architecture, deployment, and database diagrams plus a prerequisite checklist.
 - Generates both a machine-readable API schema and a human-readable API contract when an API is in scope.
 - Maps cloud deployment stages from local development through staged production rollout and operations.
+- Designs CI/CD stages for validation, immutable builds, environment promotion, approvals, observability, and rollback.
 - Gives an implementation sequence and, when asked, can help scaffold the agreed foundation.
 
 ## Get the skill
@@ -111,6 +112,8 @@ When an API is part of the system, ask for both artifacts: a machine-readable co
 
 For cloud planning, it can produce an environment/deployment diagram, technology and service matrix, account and access prerequisites, stage gates, rollback plan, and operations checklist. It does not provision cloud resources unless you explicitly ask it to. Current support claims should be checked against official vendor docs.
 
+For CI/CD planning, it can map pull request checks, build and artifact publication, staging verification, production promotion, security gates, required identities and secrets, and rollback. It treats a product's runtime data pipeline separately from the CI/CD pipeline that releases its code. For data systems, it also calls out replay, checkpoints, and reconciliation because reverting code does not undo data already written.
+
 A generated project can include files such as:
 
 ```text
@@ -130,6 +133,10 @@ The exact files depend on the project and the requested output. Unconfirmed prod
 **New idea:**
 
 > Use System Design Starter to design a first version of a neighborhood tool-lending app. I’m building it solo and want a low-cost stack. Include the database ERD, API contract files, cloud prerequisites, and staged deployment plan.
+
+**CI/CD and cloud deployment:**
+
+> Design the GCP architecture and CI/CD release workflow for my daily learning-platform migration pipeline. Include the build and test stages, artifact registry, environment promotion, deployment approvals, secrets and identity setup, prerequisites, monitoring, and rollback. Explain separately how to replay or reconcile data if a release fails.
 
 **Existing codebase:**
 
