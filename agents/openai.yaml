@@ -1,0 +1,4 @@
+interface:
+  display_name: "System Design Starter"
+  short_description: "Turn ideas or codebases into buildable system designs"
+  default_prompt: "Use $system-design-starter to turn my idea or existing project into a clear system design and buildable starting plan."
