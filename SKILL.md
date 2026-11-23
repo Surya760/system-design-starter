@@ -1,6 +1,6 @@
 ---
 name: system-design-starter
-description: Turn a product idea or existing codebase into a buildable system design, API contract, technology plan, data model, and staged cloud deployment plan. Use for architecture, stack choices, database diagrams, prerequisites, or a project foundation.
+description: Turn a product idea or existing codebase into a buildable system design, API contract, technology plan, data model, and staged cloud and CI/CD deployment plan. Use for architecture, stack choices, database diagrams, prerequisites, or a project foundation.
 ---
 
 # System Design Starter
@@ -21,6 +21,7 @@ For complex contract, technology, database, or cloud work, read the relevant foc
 
 - For OpenAPI or another API contract, read [references/api-contracts.md](references/api-contracts.md).
 - For cloud architecture, prerequisites, and staged deployment, read [references/cloud-deployment.md](references/cloud-deployment.md).
+- For CI/CD architecture, release stages, promotion gates, and rollback, read [references/ci-cd-deployment.md](references/ci-cd-deployment.md).
 - For supported technology choices, database design, and diagrams, read [references/technology-and-data.md](references/technology-and-data.md).
 
 ## Work from needs to design
@@ -41,7 +42,8 @@ When producing a full design, include the relevant items below and save generate
 6. Security, privacy, reliability, observability, backup, restore, and recovery considerations.
 7. API contract artifacts when an API is in scope: machine-readable definition plus human-readable contract document.
 8. Cloud environment/deployment diagram, prerequisites, staged rollout, and rollback/recovery plan when deployment is in scope.
-9. Dependency-aware implementation milestones and acceptance criteria.
+9. CI/CD workflow diagram or stage sequence, quality and security gates, artifact promotion, environment strategy, and release rollback when delivery automation is in scope.
+10. Dependency-aware implementation milestones and acceptance criteria.
 
 Use Mermaid for editable architecture, deployment, sequence, and ER diagrams when the target platform supports it. Provide a rendered image only when useful or requested. Keep diagrams consistent with the prose and contracts.
 
