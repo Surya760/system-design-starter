@@ -1,26 +1,122 @@
 # System Design Starter
 
-Turn a product idea—or an existing repository—into a system design you can understand, adapt, and build from.
+Turn a product idea—or an existing codebase—into a system design you can understand, adapt, and build from.
 
-**System Design Starter** helps map product needs to a practical architecture: components, data, flows, tradeoffs, and a step-by-step path to a first version. It favors clear explanations and a small, useful foundation over abstract diagrams or premature infrastructure.
+**System Design Starter** maps product needs to practical architecture: components, data, flows, tradeoffs, and a step-by-step path to a first version. It aims for clear explanations and a useful foundation without adding complexity for hypothetical scale.
 
 ## What it does
 
 - Starts from a plain-language idea or inspects an existing codebase.
 - Makes assumptions visible and asks focused questions only when they affect the design.
 - Explains component responsibilities, data ownership, and important flows.
-- Recommends a proportionate stack and explains consequential tradeoffs.
-- Gives an implementation sequence, and can help scaffold the agreed foundation when asked.
+- Recommends a proportionate technology stack and explains consequential tradeoffs.
+- Gives an implementation sequence and, when asked, can help scaffold the agreed foundation.
 
-## Example prompts
+## Get the skill
 
-- “Use `$system-design-starter` to design a first version of a neighborhood tool lending app. I’m building it solo and want a low-cost stack.”
-- “Use `$system-design-starter` to inspect this repo, explain its architecture, and show how to add team invitations.”
-- “Turn this design into a starter project structure and implement the first milestone.”
+The canonical copy is this repository: <https://github.com/Surya760/system-design-starter>. The skill instructions are in `SKILL.md`. The `agents/openai.yaml` file contains optional OpenAI interface metadata; Claude and Gemini can ignore it.
 
-## Install
+Choose the instructions below for the product you use. Installation makes a local or account copy of the skill; it does not automatically sync later changes from this GitHub repository. Reinstall or upload the updated copy after a new release.
 
-Copy the `system-design-starter` folder into your Codex skills directory (usually `~/.codex/skills/`), then invoke it with `$system-design-starter` or describe the design task naturally.
+## Use with OpenAI Codex
+
+Codex supports personal skills and project skills. For a skill available in all your projects, clone this repository into your user skills folder:
+
+```bash
+git clone https://github.com/Surya760/system-design-starter.git \
+  ~/.agents/skills/system-design-starter
+```
+
+For a skill shared with one codebase, run this command from that project's root instead:
+
+```bash
+git clone https://github.com/Surya760/system-design-starter.git \
+  .agents/skills/system-design-starter
+```
+
+Codex-specific setups may also use `$CODEX_HOME/skills/` (usually `~/.codex/skills/`) for user skills. Start a new Codex session after installing, then invoke it with `$system-design-starter` or describe a matching design task. To update a cloned copy, run `git -C <skill-folder> pull`.
+
+## Use with ChatGPT
+
+ChatGPT's built-in Skills feature is available to eligible Business, Enterprise, Healthcare, and Edu accounts, subject to workspace settings. If the Skills page is unavailable, your account or workspace may not have access enabled.
+
+1. Download this repository as a ZIP from GitHub using **Code → Download ZIP**.
+2. In ChatGPT, open **Plugins → Skills → Create → Upload from your computer**.
+3. Select the downloaded ZIP and wait for ChatGPT's scan to finish.
+4. Enable the skill. Ask for a design directly, or say “Use System Design Starter” in your prompt.
+
+For example:
+
+> Use System Design Starter to design a first version of a neighborhood tool-lending app. I’m building it solo and want a low-cost stack.
+
+ChatGPT may automatically use an enabled skill when it matches your request. If your workspace does not allow uploads, ask its administrator about skill permissions. The uploaded copy will not automatically track GitHub changes.
+
+## Use with Claude
+
+### Claude Code
+
+For a personal skill available in all projects, clone the repository into Claude Code's personal skills folder:
+
+```bash
+git clone https://github.com/Surya760/system-design-starter.git \
+  ~/.claude/skills/system-design-starter
+```
+
+To share it with one codebase, clone it into that repository instead:
+
+```bash
+git clone https://github.com/Surya760/system-design-starter.git \
+  .claude/skills/system-design-starter
+```
+
+Start or restart a Claude Code session. Invoke the skill with `/system-design-starter`, or ask Claude a matching question and let it select the skill automatically.
+
+### Claude app
+
+1. Download this repository as a ZIP from GitHub using **Code → Download ZIP**.
+2. In Claude, open **Customize → Skills → + Create skill → Upload a skill**.
+3. Upload the ZIP, then enable the skill in your Skills list.
+
+Claude app Skills require **Code execution and file creation** to be enabled. They are documented for Free, Pro, Max, Ultra, Team, and Enterprise plans, subject to organization settings. On Team or Enterprise, sharing with coworkers may require an administrator to enable skill sharing. The uploaded copy will not automatically track GitHub changes.
+
+## Use with Gemini
+
+### Gemini Apps (web, mobile, and Mac app)
+
+Gemini Apps can create a skill from a `SKILL.md` file or a folder containing it. To upload this repository:
+
+1. Download this repository as a ZIP from GitHub using **Code → Download ZIP**, then unzip it. The extracted folder (usually named `system-design-starter-main`) should contain `SKILL.md` at its top level.
+2. In Gemini, open **Customize → Skills**. If **Customize** is not visible, open **More** first.
+3. Select **Create → Upload** and choose the extracted repository folder (or select its `SKILL.md` file if prompted).
+4. Create or enable the skill. In a chat, invoke it with `/system-design-starter` (or `@system-design-starter` where that shortcut is available), or let Gemini select it automatically.
+
+Gemini Skills availability depends on account and surface; the current help page lists Gemini web, mobile, and Mac app and requires users to be 18 or older. The uploaded copy will not automatically track GitHub changes.
+
+### Gemini CLI
+
+Install the public repository directly:
+
+```bash
+gemini skills install https://github.com/Surya760/system-design-starter
+```
+
+Start Gemini CLI and run `/skills` to confirm it is available. Invoke it by selecting the skill or ask a matching question. For local development, clone the repository into a recognized skills directory such as `.agents/skills/` in a project or `~/.gemini/skills/` for your user, then run `gemini skills link .` from the skill directory if you want to link that local copy.
+
+## Try it
+
+**New idea:**
+
+> Use System Design Starter to design a first version of a neighborhood tool-lending app. I’m building it solo and want a low-cost stack.
+
+**Existing codebase:**
+
+> Use System Design Starter to inspect this repository, explain its architecture, and show how to add team invitations.
+
+**Continue into implementation:**
+
+> Turn the agreed design into a starter project structure and implement the first milestone.
+
+For an existing project, run the agent from that project's workspace or give it the relevant files. A chat without repository access can still design from an idea or from files you attach.
 
 ## Public launch copy
 
