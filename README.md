@@ -9,7 +9,10 @@ Turn a product idea—or an existing codebase—into a system design you can und
 - Starts from a plain-language idea or inspects an existing codebase.
 - Makes assumptions visible and asks focused questions only when they affect the design.
 - Explains component responsibilities, data ownership, and important flows.
-- Recommends a proportionate technology stack and explains consequential tradeoffs.
+- Recommends technologies and databases with tradeoffs and current support references.
+- Produces architecture, deployment, and database diagrams plus a prerequisite checklist.
+- Generates both a machine-readable API schema and a human-readable API contract when an API is in scope.
+- Maps cloud deployment stages from local development through staged production rollout and operations.
 - Gives an implementation sequence and, when asked, can help scaffold the agreed foundation.
 
 ## Get the skill
@@ -47,7 +50,7 @@ ChatGPT's built-in Skills feature is available to eligible Business, Enterprise,
 
 For example:
 
-> Use System Design Starter to design a first version of a neighborhood tool-lending app. I’m building it solo and want a low-cost stack.
+> Use System Design Starter to design a first version of a neighborhood tool-lending app. I’m building it solo and want a low-cost stack. Include the database ERD, API contract files, cloud prerequisites, and staged deployment plan.
 
 ChatGPT may automatically use an enabled skill when it matches your request. If your workspace does not allow uploads, ask its administrator about skill permissions. The uploaded copy will not automatically track GitHub changes.
 
@@ -102,11 +105,31 @@ gemini skills install https://github.com/Surya760/system-design-starter
 
 Start Gemini CLI and run `/skills` to confirm it is available. Invoke it by selecting the skill or ask a matching question. For local development, clone the repository into a recognized skills directory such as `.agents/skills/` in a project or `~/.gemini/skills/` for your user, then run `gemini skills link .` from the skill directory if you want to link that local copy.
 
+## Buildable architecture and contract outputs
+
+When an API is part of the system, ask for both artifacts: a machine-readable contract such as `openapi.yaml` and a readable `API_CONTRACT.md` covering endpoints, examples, auth, errors, retries, idempotency, and versioning. For GraphQL, gRPC, or event systems, it selects the matching schema format.
+
+For cloud planning, it can produce an environment/deployment diagram, technology and service matrix, account and access prerequisites, stage gates, rollback plan, and operations checklist. It does not provision cloud resources unless you explicitly ask it to. Current support claims should be checked against official vendor docs.
+
+A generated project can include files such as:
+
+```text
+design/
+  system-design.md
+  API_CONTRACT.md
+  openapi.yaml
+  architecture.mmd
+  deployment.mmd
+  database-erd.mmd
+```
+
+The exact files depend on the project and the requested output. Unconfirmed product, scale, region, tax, and security decisions should appear as assumptions or open questions.
+
 ## Try it
 
 **New idea:**
 
-> Use System Design Starter to design a first version of a neighborhood tool-lending app. I’m building it solo and want a low-cost stack.
+> Use System Design Starter to design a first version of a neighborhood tool-lending app. I’m building it solo and want a low-cost stack. Include the database ERD, API contract files, cloud prerequisites, and staged deployment plan.
 
 **Existing codebase:**
 
@@ -114,7 +137,7 @@ Start Gemini CLI and run `/skills` to confirm it is available. Invoke it by sele
 
 **Continue into implementation:**
 
-> Turn the agreed design into a starter project structure and implement the first milestone.
+> Turn the agreed design into a starter project structure and implement the first milestone. Include the OpenAPI contract and human-readable API contract doc, deployment and database diagrams, and cloud setup prerequisites. Do not deploy anything yet.
 
 For an existing project, run the agent from that project's workspace or give it the relevant files. A chat without repository access can still design from an idea or from files you attach.
 
