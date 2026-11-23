@@ -1,56 +1,60 @@
 ---
 name: system-design-starter
-description: Turn a new product idea or an existing codebase into an understandable, practical system design and a starter plan someone can build from. Use when users want architecture, component boundaries, data flow, stack choices, or a project foundation.
+description: Turn a product idea or existing codebase into a buildable system design, API contract, technology plan, data model, and staged cloud deployment plan. Use for architecture, stack choices, database diagrams, prerequisites, or a project foundation.
 ---
 
 # System Design Starter
 
-Help the user understand how their product could work and give them a foundation they can adapt. Treat system design as a collaborative explanation, not an architecture exam. Recommend the simplest design that meets the stated needs and make decisions understandable to the person who will build it.
+Help the user understand how their product can work and give them artifacts they can adapt and build from. Recommend the simplest architecture that meets stated needs. Separate confirmed facts, assumptions, recommendations, and open decisions.
 
 ## Choose the starting point
 
-- **New idea:** Extract the users, main problem, core workflow, and first useful release from the description. If a missing detail would materially change the design, ask one focused question. Otherwise state a reasonable assumption and continue.
-- **Existing project:** Inspect the repository's instructions, README, manifests, source structure, and relevant implementation before proposing changes. Describe what is already there and build on it. Do not overwrite the project's chosen stack or conventions without a clear reason.
-- **Idea plus existing code:** Treat the repository as the current source of truth, and call out where it does or does not support the intended product.
+- **New idea:** Identify users, the problem, core journeys, and first useful release. Ask only for decisions that would materially change the design; otherwise state assumptions and continue.
+- **Existing project:** Read its instructions, README, manifests, source structure, and relevant implementation. Treat the codebase as the source of truth and preserve its choices unless the user requests a change.
+- **Idea plus existing code:** Explain what the current project already supports and what must change to reach the intended product.
 
-Do not modify files just because the user asked for a design. If the user asks to set up or implement the foundation, turn the agreed design into reviewable project files, using the existing stack where possible. Ask before irreversible or externally visible actions.
+## Choose deliverables
+
+Match the output to the request. A design-only answer can be concise and inline. When the user wants a buildable project plan, create a reviewable architecture document and diagrams. When an API is part of the system, include both a machine-readable API definition and a human-readable API contract document unless the user asks for only one. When cloud deployment is in scope, include deployment stages and prerequisites; distinguish a plan from actually provisioning or deploying resources.
+
+For complex contract, technology, database, or cloud work, read the relevant focused guide:
+
+- For OpenAPI or another API contract, read [references/api-contracts.md](references/api-contracts.md).
+- For cloud architecture, prerequisites, and staged deployment, read [references/cloud-deployment.md](references/cloud-deployment.md).
+- For supported technology choices, database design, and diagrams, read [references/technology-and-data.md](references/technology-and-data.md).
 
 ## Work from needs to design
 
-Identify the core user journeys and the system's quality needs: expected scale, latency, availability, privacy, security, cost, platform, integrations, and delivery constraints. Cover only the needs that affect this design. When the user has not specified scale or constraints, assume a modest first release, label the assumption, and avoid designing for hypothetical scale.
+Identify user journeys and quality needs that affect the design: scale, latency, availability, privacy, security, cost, platform, integrations, team skills, and delivery constraints. If scale or constraints are unknown, label a modest first-release assumption and show what decisions could change it.
 
-Then map the smallest useful architecture:
+Map the smallest useful architecture: interfaces, modules/services, data stores and ownership, external dependencies, important flows, identity/security boundaries, and operations. Prefer a modular monolith and managed services for an early product unless stated needs justify more. Explain tradeoffs and the point at which a simpler choice should change.
 
-- clients and interfaces;
-- backend services or modules and their responsibilities;
-- data stores and the important entities or relationships;
-- external services and integration boundaries;
-- key request, event, or data flows;
-- authentication, authorization, and sensitive-data handling when relevant;
-- deployment and operations at a level appropriate to the project.
+## Buildable design outputs
 
-Prefer a modular monolith and a small number of managed services for a typical early product. Recommend distributed services, queues, caches, replicas, or advanced infrastructure only when a stated requirement justifies them. Explain the tradeoff and the point at which a simpler choice might need to change.
+When producing a full design, include the relevant items below and save generated files together in a clear output folder:
 
-## Deliver a buildable explanation
+1. Product scope, target users, journeys, assumptions, and open decisions.
+2. Architecture diagram with trust boundaries and external dependencies.
+3. Component responsibilities, data ownership, important request/event flows, and failure behavior.
+4. Data model with entity relationships, constraints, indexes, migration approach, and a database diagram.
+5. Technology choices tied to requirements, with alternatives and operational tradeoffs.
+6. Security, privacy, reliability, observability, backup, restore, and recovery considerations.
+7. API contract artifacts when an API is in scope: machine-readable definition plus human-readable contract document.
+8. Cloud environment/deployment diagram, prerequisites, staged rollout, and rollback/recovery plan when deployment is in scope.
+9. Dependency-aware implementation milestones and acceptance criteria.
 
-Tailor the level of detail to the user's request. A useful design generally includes:
+Use Mermaid for editable architecture, deployment, sequence, and ER diagrams when the target platform supports it. Provide a rendered image only when useful or requested. Keep diagrams consistent with the prose and contracts.
 
-1. **Product summary:** who it serves and what the first version does.
-2. **Assumptions and open decisions:** clearly separate known facts from assumptions; ask only questions that block a sound design.
-3. **Architecture view:** a compact Mermaid diagram when it clarifies boundaries or flows; otherwise use a short component list.
-4. **Component responsibilities:** what each part owns and how parts communicate.
-5. **Data model and flow:** key records, ownership, and one or two important end-to-end flows.
-6. **Technology choices:** recommend a stack only when requested or useful; explain why it fits and name viable alternatives when the choice is consequential.
-7. **Risks and tradeoffs:** identify concrete failure modes, security or privacy concerns, and likely cost or complexity drivers.
-8. **Build sequence:** break the work into a small, dependency-aware set of milestones that leads to a usable first release.
-9. **Starting foundation:** when asked, propose or create the folder structure, interfaces, configuration, and starter implementation that reflect the design.
+## Current technology and cloud support
 
-Keep diagrams and lists legible. Define unfamiliar terms briefly. Show how the user can change a recommendation, and avoid presenting estimates or assumptions as facts. If the request is broad, give a clear first-pass design and list the few decisions that would most change it.
+When recommending cloud services, frameworks, database engines, runtimes, or versions whose support status may change, verify current claims against official vendor documentation. State the date checked and cite the vendor source in the delivered design. Distinguish generally available, preview, deprecated, and end-of-support features. Do not call a technology “supported” without a current authoritative source. Avoid fake precision in cost and capacity estimates; document the assumptions and use current pricing sources when the user needs a cost estimate.
 
-## For existing projects
+Do not provision, deploy, purchase, publish, or change live infrastructure as part of producing a plan. Do those actions only when the user explicitly asks for them and the target account, environment, and expected effects are clear. Keep credentials and secret values out of generated artifacts.
 
-Separate observations from recommendations. Refer to relevant files and existing patterns as evidence. Preserve working behavior and limit edits to the requested scope. If implementation is requested, first summarize the proposed boundaries and any consequential changes; then make the smallest coherent set of changes and report what was created or changed.
+## Existing projects and implementation
+
+Separate observations from recommendations and cite repository files as evidence. If implementation is requested, turn the agreed design into reviewable files using existing conventions. Do not modify files merely because the user asked for a design. Ask before irreversible or externally visible actions.
 
 ## Boundaries
 
-This skill provides product architecture and a practical implementation starting point. It does not certify security, compliance, capacity, or production readiness. For high-stakes or regulated systems, surface the need for qualified review and keep claims within the evidence available. Do not invent repository details, performance numbers, user requirements, or vendor capabilities.
+This skill provides a design and implementation starting point; it does not certify security, compliance, capacity, or production readiness. For regulated or high-impact systems, identify review needs and keep claims within evidence. Do not invent product requirements, repository details, performance figures, vendor capabilities, or launch decisions.
